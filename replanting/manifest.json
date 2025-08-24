@@ -1,0 +1,25 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Auto Replanting",
+		"description": "Automatically replant crops and trees when broken if seeds/saplings are in inventory",
+		"uuid": "a3f8b927-6c4e-4d2a-8f5e-9b8c7a6d5e4f",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 21, 0]
+	},
+	"modules": [
+		{
+			"type": "script",
+			"language": "javascript",
+			"entry": "scripts/main.js",
+			"uuid": "b2e9c736-7d5f-4e3b-9f6a-8c7b6a5d4e3f",
+			"version": [1, 0, 0]
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "2.1.0"
+		}
+	]
+}
