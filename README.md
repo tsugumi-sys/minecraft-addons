@@ -13,7 +13,6 @@ This repository contains Minecraft Bedrock Edition addons for enhancing gameplay
 
 ## Installation / インストール方法
 
-### Easy Installation (Recommended) / 簡単インストール（推奨）
 
 1. Go to [Releases](https://github.com/tsugumi-sys/minecraft-addons/releases) and download the latest `.mcpack` file for your desired addon:
    - `capatiator.mcpack` - Tree cutting addon
@@ -26,19 +25,6 @@ This repository contains Minecraft Bedrock Edition addons for enhancing gameplay
 3. In Minecraft, create or edit a world and enable the behavior pack in world settings
 
 4. Start playing and enjoy the addon!
-
-### Manual Installation / 手動インストール
-
-If automatic import doesn't work:
-
-1. Download the `.mcpack` file and rename it to `.zip`
-2. Extract the contents
-3. Copy the extracted folder to:
-   - **Windows**: `%localappdata%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs\`
-   - **Android**: `Android/data/com.mojang.minecraftpe/files/games/com.mojang/development_behavior_packs/`
-   - **iOS**: `On My iPhone/Minecraft/games/com.mojang/development_behavior_packs/`
-4. Enable the behavior pack in world settings
-
 
 ## Requirements / 必要環境
 
