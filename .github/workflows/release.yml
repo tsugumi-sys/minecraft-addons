@@ -1,0 +1,42 @@
+name: Build and Release Minecraft Addons
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y zip jq
+        
+    - name: Build addon packages
+      run: |
+        mkdir -p releases
+        
+        # Build all addons
+        for addon in capatiator productivity replanting tool-replacement; do
+          if [ -d "$addon" ] && [ -f "$addon/manifest.json" ]; then
+            echo "Building $addon..."
+            OUTPUT_DIR="releases" ./build_mcpack.sh "$addon"
+          fi
+        done
+        
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: releases/*.mcpack
+        generate_release_notes: true
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
