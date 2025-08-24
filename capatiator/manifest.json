@@ -1,0 +1,37 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Tree Capacitor",
+    "description": "Cut down entire trees while sneaking",
+    "uuid": "8977ea7a-94eb-43a5-b97a-87d7c7d63736",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "40ff5d70-3898-498a-9c02-a3f07234c555",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+       "version": "2.1.0"
+    }
+  ]
+}
