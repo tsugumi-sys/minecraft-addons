@@ -1,5 +1,43 @@
 import { ItemStack, system, world } from "@minecraft/server";
 
+// Language Configuration
+const LANGUAGE = "ja"; // Change to 'ja' for Japanese
+
+// Language texts
+const texts = {
+	en: {
+		woodCapacitor: "Wood Capacitor",
+		oreCapacitor: "Ore Capacitor",
+		cropCapacitor: "Crop Capacitor",
+		activated: "activated! Breaking",
+		blocks: "blocks",
+		dropped: "Dropped",
+		blocksAtLocation: "blocks at location!",
+		errorDropping: "Error dropping items:",
+		warning: "Warning:",
+		blocksCouldntBeBroken: "blocks couldn't be broken due to errors.",
+		error: "error:",
+	},
+	ja: {
+		woodCapacitor: "木こり",
+		oreCapacitor: "鉱石採掘",
+		cropCapacitor: "作物採取",
+		activated: "発動",
+		blocks: "個",
+		dropped: "ドロップ",
+		blocksAtLocation: "個とれた",
+		errorDropping: "アイテムドロップエラー:",
+		warning: "警告:",
+		blocksCouldntBeBroken: "ブロックがエラーにより破壊できませんでした。",
+		error: "エラー:",
+	},
+};
+
+// Function to get text by key
+function getText(key) {
+	return texts[LANGUAGE][key] || texts.en[key] || key;
+}
+
 // Configuration
 const MAX_BLOCKS = 100;
 
@@ -122,9 +160,15 @@ class Capacitor {
 				);
 
 				if (connectedBlocks.length > 1) {
-					player.sendMessage(
-						`${this.name} activated! Breaking ${connectedBlocks.length} blocks...`,
-					);
+					if (LANGUAGE === "ja") {
+						player.sendMessage(
+							`${this.name}${getText("activated")} ${connectedBlocks.length}${getText("blocks")}...`,
+						);
+					} else {
+						player.sendMessage(
+							`${this.name} ${getText("activated")} ${connectedBlocks.length} ${getText("blocks")}...`,
+						);
+					}
 
 					let totalBlocksBroken = 0;
 					let errorCount = 0;
@@ -155,24 +199,32 @@ class Capacitor {
 									dropItemType,
 									totalBlocksBroken,
 								);
-								player.sendMessage(
-									`Dropped ${totalBlocksBroken + 1} blocks at location!`,
-								);
+								if (LANGUAGE === "ja") {
+									player.sendMessage(
+										`${totalBlocksBroken + 1}${getText("blocksAtLocation")}`,
+									);
+								} else {
+									player.sendMessage(
+										`${getText("dropped")} ${totalBlocksBroken + 1} ${getText("blocksAtLocation")}`,
+									);
+								}
 							} catch (error) {
-								player.sendMessage(`Error dropping items: ${error.message}`);
+								player.sendMessage(
+									`${getText("errorDropping")} ${error.message}`,
+								);
 							}
 						}
 
 						if (errorCount > 0) {
 							player.sendMessage(
-								`Warning: ${errorCount} blocks couldn't be broken due to errors.`,
+								`${getText("warning")} ${errorCount} ${getText("blocksCouldntBeBroken")}`,
 							);
 						}
 					}, 1);
 				}
 			}
 		} catch (error) {
-			player.sendMessage(`${this.name} error: ${error.message}`);
+			player.sendMessage(`${this.name} ${getText("error")} ${error.message}`);
 			console.error(`${this.name} failed: ${error.message}`);
 		}
 	}
@@ -209,7 +261,7 @@ class WoodCapacitor extends Capacitor {
 			"minecraft:netherite_axe",
 		];
 
-		super(woodTypes, axeTypes, MAX_BLOCKS, "Wood Capacitor");
+		super(woodTypes, axeTypes, MAX_BLOCKS, getText("woodCapacitor"));
 	}
 }
 
@@ -247,7 +299,7 @@ class OreCapacitor extends Capacitor {
 			"minecraft:netherite_pickaxe",
 		];
 
-		super(oreTypes, pickaxeTypes, MAX_BLOCKS, "Ore Capacitor");
+		super(oreTypes, pickaxeTypes, MAX_BLOCKS, getText("oreCapacitor"));
 	}
 }
 
@@ -279,7 +331,7 @@ class CropCapacitor extends Capacitor {
 			"minecraft:netherite_hoe",
 		];
 
-		super(cropTypes, hoeTypes, MAX_BLOCKS, "Crop Capacitor");
+		super(cropTypes, hoeTypes, MAX_BLOCKS, getText("cropCapacitor"));
 	}
 
 	isValidBlock(blockTypeId) {

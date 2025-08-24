@@ -1,0 +1,25 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Productivity Tracker",
+		"description": "Track harvested items, movement distance, and display session productivity metrics",
+		"uuid": "5d5737ba-af0a-4f8b-8b6a-b8df1407c208",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 21, 0]
+	},
+	"modules": [
+		{
+			"type": "script",
+			"language": "javascript",
+			"entry": "scripts/main.js",
+			"uuid": "a0bdeb23-89a0-4ad6-b532-cec26cb11e09",
+			"version": [1, 0, 0]
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "2.1.0"
+		}
+	]
+}
