@@ -18,16 +18,6 @@ This repository contains Minecraft Bedrock Edition addons for enhancing gameplay
 3. Create or edit a world and enable the behavior pack in settings
 4. Test the addon in-game
 
-## File Structure / ファイル構造
-
-```
-minecraft/addons/
-├── README.md                 # This file
-├── capatiator/              # Capacitor addon
-├── productivity/            # Productivity Tracker addon  
-├── replanting/              # Auto Replanting addon
-└── tool-replacement/        # Tool Replacement addon
-```
 
 ## Requirements / 必要環境
 
