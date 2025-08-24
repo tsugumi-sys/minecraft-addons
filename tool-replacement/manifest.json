@@ -3,7 +3,7 @@
 	"header": {
 		"name": "Tool Replacement",
 		"description": "道具が壊れると、自動的に同じ道具に持ち替える Automatically replaces broken tools with the same tool from inventory",
-		"uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"uuid": "bfeca37b-e658-43ae-96a7-7f250ed12095",
 		"version": [1, 0, 0],
 		"min_engine_version": [1, 21, 0]
 	},
@@ -12,7 +12,7 @@
 			"type": "script",
 			"language": "javascript",
 			"entry": "scripts/main.js",
-			"uuid": "b2c3d4e5-f6g7-8901-bcde-f23456789012",
+			"uuid": "89a32432-05fd-4222-ad02-263f2d1a4eb8",
 			"version": [1, 0, 0]
 		}
 	],
