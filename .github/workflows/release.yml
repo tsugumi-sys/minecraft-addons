@@ -21,13 +21,14 @@ jobs:
         
     - name: Build addon packages
       run: |
+        chmod +x build_release.sh
         mkdir -p releases
         
         # Build all addons
         for addon in capatiator productivity replanting tool-replacement; do
           if [ -d "$addon" ] && [ -f "$addon/manifest.json" ]; then
             echo "Building $addon..."
-            OUTPUT_DIR="releases" ./build_mcpack.sh "$addon"
+            OUTPUT_DIR="releases" ./build_release.sh "$addon"
           fi
         done
         
