@@ -4,29 +4,12 @@ This repository contains Minecraft Bedrock Edition addons and development tools 
 
 ## Current Addons
 
-### Tree Capacitor (tree-capatiator)
-
-A general-purpose capacitor addon that allows players to break connected blocks efficiently:
-
-- **Wood Capacitor**: Break entire trees by breaking any log while sneaking and holding an axe
-- **Ore Capacitor**: Break ore veins by breaking any ore while sneaking and holding a pickaxe
-
-#### Features
-
-- **Wood Types Supported**: Oak, Birch, Spruce, Jungle, Acacia, Dark Oak, Mangrove, Cherry (logs and wood blocks)
-- **Ore Types Supported**: Coal, Iron, Copper, Gold, Redstone, Lapis Lazuli, Diamond, Emerald, Nether Quartz, Nether Gold, Ancient Debris (including deepslate variants)
-- **Tool Requirements**: 
-  - Wood blocks require axes (wooden, stone, iron, golden, diamond, netherite)
-  - Ore blocks require pickaxes (wooden, stone, iron, golden, diamond, netherite)
-- **Activation**: Sneak + break block with appropriate tool
-- **Safety**: Maximum of 100 blocks per activation to prevent server lag
-
-#### How to Use
-
-1. Hold the appropriate tool (axe for wood, pickaxe for ore)
-2. Hold Shift (sneak)
-3. Break any connected block of the same type
-4. All connected blocks will be broken and items dropped at the original location
+| Addon Name | English Description | Japanese Description |
+|------------|-------------------|---------------------|
+| Capacitor | Cut down entire trees, blocks and crops while sneaking | - |
+| Productivity Tracker | Track harvested items, movement distance, and display session productivity metrics | - |
+| Auto Replanting | Automatically replant crops and trees when broken if seeds/saplings are in inventory | - |
+| Tool Replacement | Automatically replaces broken tools with the same tool from inventory | 道具が壊れると、自動的に同じ道具に持ち替える |
 
 ## Development Tools
 
