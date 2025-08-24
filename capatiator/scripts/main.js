@@ -251,12 +251,97 @@ class OreCapacitor extends Capacitor {
 	}
 }
 
+// Crop Capacitor
+class CropCapacitor extends Capacitor {
+	constructor() {
+		const cropTypes = {
+			"minecraft:wheat": "minecraft:wheat",
+			"minecraft:carrots": "minecraft:carrot",
+			"minecraft:potatoes": "minecraft:potato",
+			"minecraft:beetroots": "minecraft:beetroot",
+			"minecraft:nether_wart": "minecraft:nether_wart",
+			"minecraft:sweet_berry_bush": "minecraft:sweet_berries",
+			"minecraft:cocoa": "minecraft:cocoa_beans",
+			"minecraft:melon": "minecraft:melon_slice",
+			"minecraft:pumpkin": "minecraft:pumpkin",
+			"minecraft:sugar_cane": "minecraft:sugar_cane",
+			"minecraft:bamboo": "minecraft:bamboo",
+			"minecraft:kelp": "minecraft:kelp",
+			"minecraft:sea_pickle": "minecraft:sea_pickle",
+		};
+
+		const hoeTypes = [
+			"minecraft:wooden_hoe",
+			"minecraft:stone_hoe",
+			"minecraft:iron_hoe",
+			"minecraft:golden_hoe",
+			"minecraft:diamond_hoe",
+			"minecraft:netherite_hoe",
+		];
+
+		super(cropTypes, hoeTypes, MAX_BLOCKS, "Crop Capacitor");
+	}
+
+	isValidBlock(blockTypeId) {
+		return this.blockTypes.hasOwnProperty(blockTypeId);
+	}
+
+	findConnectedBlocks(dimension, startLocation, blockType) {
+		const visited = new Set();
+		const blocks = [];
+		const queue = [startLocation];
+
+		while (queue.length > 0 && blocks.length < this.maxBlocks) {
+			const location = queue.shift();
+			const key = `${location.x},${location.y},${location.z}`;
+
+			if (visited.has(key)) continue;
+			visited.add(key);
+
+			try {
+				const block = dimension.getBlock(location);
+
+				if (block && this.isValidBlock(block.typeId)) {
+					blocks.push({
+						location: { ...location },
+						block: block,
+					});
+
+					for (let dx = -1; dx <= 1; dx++) {
+						for (let dz = -1; dz <= 1; dz++) {
+							if (dx === 0 && dz === 0) continue;
+
+							const newLoc = {
+								x: location.x + dx,
+								y: location.y,
+								z: location.z + dz,
+							};
+
+							const newKey = `${newLoc.x},${newLoc.y},${newLoc.z}`;
+							if (!visited.has(newKey)) {
+								queue.push(newLoc);
+							}
+						}
+					}
+				}
+			} catch (error) {
+				console.warn(
+					`Failed to access block at ${location.x},${location.y},${location.z}: ${error.message}`,
+				);
+			}
+		}
+
+		return blocks;
+	}
+}
+
 // Create capacitor instances
 const woodCapacitor = new WoodCapacitor();
 const oreCapacitor = new OreCapacitor();
+const cropCapacitor = new CropCapacitor();
 
 // Array of all capacitors
-const capacitors = [woodCapacitor, oreCapacitor];
+const capacitors = [woodCapacitor, oreCapacitor, cropCapacitor];
 
 // Listen for block break events
 world.beforeEvents.playerBreakBlock.subscribe((event) => {
